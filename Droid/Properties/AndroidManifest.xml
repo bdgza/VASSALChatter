@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.1" package="com.bdgza.vassal_chatter">
+	<uses-sdk android:minSdkVersion="21" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<application android:label="VSLChatter"></application>
+</manifest>
