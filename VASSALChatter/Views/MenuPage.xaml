@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="VASSALChatter.MenuPage"
+	Title="{Binding Title}"
+	Icon="{Binding Icon}"
+	BackgroundColor="{StaticResource MenuColor}">
+	<ContentPage.Content>
+		<StackLayout VerticalOptions="FillAndExpand" Padding="5,30,5,5">
+			<Label Text="Test"></Label>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

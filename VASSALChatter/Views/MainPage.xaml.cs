@@ -31,9 +31,7 @@ namespace VASSALChatter
 				Debug.WriteLine($"MODULE DISCONNECTED\n\t{args.Module}");
 			});
 
-			//DependencyService.Get<IVassalSocketManager>().Test();
-
-			DependencyService.Get<IVassalSocketManager>().OpenModuleConnection("Memoir '44");
+			//DependencyService.Get<IVassalSocketManager>().OpenModuleConnection("Memoir '44");
 
 		}
 	}

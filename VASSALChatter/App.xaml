@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="VASSALChatter.App">
 	<Application.Resources>
-		<!-- Application resource dictionary -->
+		<ResourceDictionary>
+            <Color x:Key="PageBackgroundColor">White</Color>
+			<Color x:Key="BarColor">#647144</Color>
+			<Color x:Key="BarTextColor">#ffcc00</Color>
+			<Color x:Key="TextColor">Black</Color>
+			<Color x:Key="MenuColor">#647144</Color>
+			<Color x:Key="MenuTextColor">#ffcc00</Color>
+		</ResourceDictionary>
 	</Application.Resources>
 </Application>
