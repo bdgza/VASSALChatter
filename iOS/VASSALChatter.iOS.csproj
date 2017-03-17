@@ -136,6 +136,18 @@
     <BundleResource Include="Resources\hamburger.png" />
     <BundleResource Include="Resources\hamburger%402x.png" />
     <BundleResource Include="Resources\module.png" />
+    <BundleResource Include="Resources\chat%403x.png" />
+    <BundleResource Include="Resources\chat%402x.png" />
+    <BundleResource Include="Resources\chat.png" />
+    <BundleResource Include="Resources\treehierarchy%403x.png" />
+    <BundleResource Include="Resources\treehierarchy%402x.png" />
+    <BundleResource Include="Resources\treehierarchy.png" />
+    <BundleResource Include="Resources\disconnect%403x.png" />
+    <BundleResource Include="Resources\disconnect%402x.png" />
+    <BundleResource Include="Resources\disconnect.png" />
+    <BundleResource Include="Resources\connect%402x.png" />
+    <BundleResource Include="Resources\connect.png" />
+    <BundleResource Include="Resources\connect%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

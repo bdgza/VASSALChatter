@@ -13,7 +13,8 @@ namespace VASSALChatter
 {
 	public class ServerViewModel : BaseViewModel
 	{
-		public ServerViewModel()
+		public ServerViewModel(RootPage root)
+			: base(root)
 		{
 			Title = "VASSAL Server";
 			Icon = "slideout.png";

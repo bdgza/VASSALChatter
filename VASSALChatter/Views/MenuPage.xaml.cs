@@ -7,15 +7,11 @@ namespace VASSALChatter
 {
 	public partial class MenuPage : ContentPage
 	{
-		private RootPage root;
-
 		public MenuPage(RootPage root)
 		{
-			this.root = root;
-
 			InitializeComponent();
 
-			BindingContext = new BaseViewModel
+			BindingContext = new BaseViewModel(root)
 			{
 				Title = "VASSAL Chat"
 			};

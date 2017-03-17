@@ -7,9 +7,12 @@ namespace VASSALChatter
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{
-		public BaseViewModel()
+		public BaseViewModel(RootPage root)
 		{
+			Root = root;
 		}
+
+		public RootPage Root { get; private set; }
 
 		private string title = string.Empty;
 		public const string TitlePropertyName = "Title";

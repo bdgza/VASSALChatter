@@ -5,6 +5,8 @@ using System.Net.Sockets;
 using System.Text;
 using VASSALChatter.iOS.Networking;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 [assembly: Xamarin.Forms.Dependency(typeof(VassalSocketManageriOS))]
 
@@ -27,6 +29,15 @@ namespace VASSALChatter.iOS.Networking
 			{
 				sBuffer = new byte[size];
 				sSocket = sock;
+			}
+		}
+
+		public void CloseModuleConnection(string module)
+		{
+			ModuleSocket socket = openModuleSockets.First((arg) => arg.Module == module);
+			if (socket != null)
+			{
+				socket.Socket.Send(Encoding.ASCII.GetBytes("!BYE\n"));
 			}
 		}
 
@@ -80,7 +91,13 @@ namespace VASSALChatter.iOS.Networking
 		{
 			FormsMessenger.Instance.Send(new ModuleDisconnectedMessage(moduleSocket.Module));
 
-			moduleSocket.Socket?.Shutdown(SocketShutdown.Both);
+			try
+			{
+				moduleSocket.Socket?.Shutdown(SocketShutdown.Both);
+			}
+			catch (SocketException)
+			{
+			}
 			moduleSocket.Socket?.Close();
 
 			openModuleSockets.Remove(moduleSocket);
@@ -106,26 +123,26 @@ namespace VASSALChatter.iOS.Networking
 					return;
 				}
 
-				var received = Encoding.ASCII.GetString(moduleSocket.sBuffer);
+				var received = Encoding.ASCII.GetString(moduleSocket.sBuffer, 0, bytesReceived);
 
 				Console.WriteLine(".{0} bytes received: {1}{2}{2}", bytesReceived.ToString(), received, Environment.NewLine);
 
 				FormsMessenger.Instance.Send(new DataReceivedMessage(moduleSocket.Module, received));
 
-				if (received.StartsWith("PRIV_CHAT", StringComparison.Ordinal))
-				{
-					Console.WriteLine("Sending shutdown.");
+				//if (received.StartsWith("PRIV_CHAT", StringComparison.Ordinal))
+				//{
+				//	Console.WriteLine("Sending shutdown.");
 
-					clientSocket.Send(Encoding.ASCII.GetBytes("!BYE\n"));
+				//	clientSocket.Send(Encoding.ASCII.GetBytes("!BYE\n"));
 
-					RemoveModuleSocket(moduleSocket);
-				}
-				else
-				{
+				//	RemoveModuleSocket(moduleSocket);
+				//}
+				//else
+				//{
 					asyncResult = clientSocket.BeginReceive(moduleSocket.sBuffer, 0, moduleSocket.sBuffer.Length, SocketFlags.None, new AsyncCallback(ModuleSocketReceiveCallback), moduleSocket);
 
 					Console.Write("Receiving response...");
-				}
+				//}
 			}
 			catch (Exception ex)
 			{
@@ -135,5 +152,15 @@ namespace VASSALChatter.iOS.Networking
 			}
 		}
 
+		public void SendChatMessage(string module, string room, string message)
+		{
+			ModuleSocket socket = openModuleSockets.First((arg) => arg.Module == module);
+			if (socket != null)
+			{
+				Console.WriteLine($"Sending chat message to {module}: {room} = {message}");
+				// TODO: chat identity
+				socket.Socket.Send(Encoding.ASCII.GetBytes($"FWD\t{module}/{room}/~{socket.Password}.{socket.Timestamp}\tCHAT{message}\n"));
+			}
+		}
 	}
 }

@@ -12,11 +12,11 @@ namespace VASSALChatter
 			get { return BindingContext as ServerViewModel; }
 		}
 
-		public ServerPage()
+		public ServerPage(RootPage root)
 		{
 			InitializeComponent();
 
-			BindingContext = new ServerViewModel();
+			BindingContext = new ServerViewModel(root);
 		}
 
 		protected override void OnAppearing()

@@ -5,7 +5,8 @@ namespace VASSALChatter
 	{
 		Server,
 		Module,
-		Person
+		Person,
+		Chat
 	}
 
 	public class PageDefinition
