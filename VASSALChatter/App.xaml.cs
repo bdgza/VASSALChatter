@@ -1,6 +1,8 @@
 ﻿using VASSALChatter.ViewModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace VASSALChatter
 {
 	// icons:
@@ -17,6 +19,7 @@ namespace VASSALChatter
 			InitializeComponent();
 
 			MainPage = new RootPage();
+			//MainPage = new MainPage();
 		}
 
 		protected override void OnStart()

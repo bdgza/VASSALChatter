@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace VASSALChatter
@@ -10,11 +11,6 @@ namespace VASSALChatter
 		private ChatViewModel ViewModel
 		{
 			get { return BindingContext as ChatViewModel; }
-		}
-
-		protected override void ViewDidLoad()
-		{
-
 		}
 
 		public ChatPage()
@@ -35,6 +31,14 @@ namespace VASSALChatter
 			SetupListeners();
 		}
 
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+
+			FormsMessenger.Instance.Unsubscribe<DataReceivedMessage>(this);
+			FormsMessenger.Instance.Unsubscribe<KeyboardVisibilityMessage>(this);
+		}
+
 		private void SetupListeners()
 		{
 			FormsMessenger.Instance.Subscribe<DataReceivedMessage>(this, (obj, args) =>
@@ -47,6 +51,15 @@ namespace VASSALChatter
 						AddMessage(new ChatMessage { Value = args.Message.Substring(4, args.Message.Length - 5), Color = Color.Black });
 					}
 				}
+			});
+
+			FormsMessenger.Instance.Subscribe<KeyboardVisibilityMessage>(this, (obj, args) =>
+			{
+				Debug.WriteLine($"KEYBOARD VISIBLE = {args.Visible}");
+
+				var chatMsg = ViewModel.Messages.LastOrDefault();
+				if (chatMsg != null)
+					Device.BeginInvokeOnMainThread(() => listView.ScrollTo(chatMsg, ScrollToPosition.MakeVisible, true));
 			});
 		}
 
@@ -79,6 +92,7 @@ namespace VASSALChatter
 		void ListView_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
 		{
 			MessageEntry.Unfocus();
+			if (e == null) return;
 			listView.SelectedItem = null;
 		}
 

@@ -47,6 +47,13 @@ namespace VASSALChatter
 			action();
 		}
 
+		protected override void OnDisappearing()
+		{
+			FormsMessenger.Instance.Unsubscribe<DataReceivedMessage>(this);
+			FormsMessenger.Instance.Unsubscribe<ModuleConnectedMessage>(this);
+			FormsMessenger.Instance.Unsubscribe<ModuleDisconnectedMessage>(this);
+		}
+
 		private void SetupListeners()
 		{
 			FormsMessenger.Instance.Subscribe<DataReceivedMessage>(this, async (obj, args) =>

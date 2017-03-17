@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.bdgza.vassal-chatter</string>
+	<string>com.bdgza.vassalchat</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -38,5 +38,9 @@
 	<string>0.1</string>
 	<key>CFBundleName</key>
 	<string>VASSALChat</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Sample</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Sample</string>
 </dict>
 </plist>
