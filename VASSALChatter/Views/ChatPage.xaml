@@ -2,21 +2,15 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:VASSALChatter;assembly=VASSALChatter"
 	x:Class="VASSALChatter.ChatPage"
 	Title="Chat"
 	Icon="chat.png">
 	<ContentPage.Content>
-		<Grid Padding="0" RowSpacing="0" Focused="Grid_Focused" x:Name="mainGrid">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="30" />
-			</Grid.RowDefinitions>
+		<StackLayout>
 
-			<ListView x:Name="listView"
-				CachingStrategy="RecycleElement"
+			<local:NativeChatListView x:Name="listView"
+				
 		        ItemsSource="{Binding Messages}"
 		        HasUnevenRows="true"
 		        IsPullToRefreshEnabled="false"
@@ -25,7 +19,7 @@
 				Grid.Row="0"
 				ItemTapped="ListView_ItemTapped"
 				Margin="0,0,0,0">
-		      <ListView.ItemTemplate>
+		      <local:NativeChatListView.ItemTemplate>
 		        <DataTemplate>
 		          <ViewCell>
 					<Label Text="{Binding Value}" FontSize="14" LineBreakMode="WordWrap" TextColor="{Binding Color}">
@@ -39,23 +33,9 @@
 					</Label>
 		          </ViewCell>
 		        </DataTemplate>
-		      </ListView.ItemTemplate>
-		    </ListView>
-
-			<StackLayout
-				x:Name="buttonBar"
-				HorizontalOptions="FillAndExpand"
-				Grid.Row="1"
-				Orientation="Horizontal"
-				BackgroundColor="Blue"
-				Margin="0,0,0,0"
-				Padding="0,0,0,0">
+		      </local:NativeChatListView.ItemTemplate>
+		    </local:NativeChatListView>
 			
-				<Button WidthRequest="30" Text="X" TextColor="White"></Button>
-				<Button WidthRequest="30" Text="!" TextColor="White"></Button>
-				<Entry x:Name="MessageEntry" Text="{Binding MessageField}" HorizontalOptions="FillAndExpand" Keyboard="Text" Completed="ChatEntry_Completed" Placeholder="Message" ></Entry>
-				<Button WidthRequest="80" Text="Send" Clicked="SendButton_Clicked" TextColor="White"></Button>
-			</StackLayout>
-		</Grid>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

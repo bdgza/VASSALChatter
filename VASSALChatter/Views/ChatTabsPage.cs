@@ -143,7 +143,7 @@ namespace VASSALChatter
 							{
 								var field = fields[f];
 								var index = field.IndexOf('=');
-								var header = field.Substring(5, index - 5);
+								var header = field.Length > 5 ? field.Substring(5, index - 5) : "";
 								var headerFields = header.Split('/');
 								var roomName = headerFields[1];
 								var userId = headerFields[2];

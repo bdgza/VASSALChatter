@@ -114,6 +114,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Networking\" />
     <Folder Include="Custom\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -131,6 +132,9 @@
     <Compile Include="Networking\ModuleSocket.cs" />
     <Compile Include="Custom\MainPageRenderer.cs" />
     <Compile Include="Custom\ChatPageRenderer.cs" />
+    <Compile Include="UI\NativeiOSChatListViewRenderer.cs" />
+    <Compile Include="UI\ChatInputAccessoryView.cs" />
+    <Compile Include="UI\ChatInputPlaceholderTextView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\slideout.png" />
@@ -151,6 +155,12 @@
     <BundleResource Include="Resources\connect%402x.png" />
     <BundleResource Include="Resources\connect.png" />
     <BundleResource Include="Resources\connect%403x.png" />
+    <BundleResource Include="Resources\t_camera.png" />
+    <BundleResource Include="Resources\t_camera%402x.png" />
+    <BundleResource Include="Resources\t_camera%403x.png" />
+    <BundleResource Include="Resources\t_send.png" />
+    <BundleResource Include="Resources\t_send%402x.png" />
+    <BundleResource Include="Resources\t_send%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

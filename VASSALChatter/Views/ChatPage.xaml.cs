@@ -61,6 +61,15 @@ namespace VASSALChatter
 				if (chatMsg != null)
 					Device.BeginInvokeOnMainThread(() => listView.ScrollTo(chatMsg, ScrollToPosition.MakeVisible, true));
 			});
+
+			var nat = new NativeChatListViewSendBehavior();
+			nat.Command = new Command<string>((message) =>
+			{
+				Debug.WriteLine($"Nat command {message}");
+				ViewModel.MessageField = message;
+				SendMessage();
+			});
+			listView.Behaviors.Add(nat);
 		}
 
 		private void AddMessage(ChatMessage chatMsg)
@@ -91,7 +100,7 @@ namespace VASSALChatter
 
 		void ListView_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
 		{
-			MessageEntry.Unfocus();
+			//MessageEntry.Unfocus();
 			if (e == null) return;
 			listView.SelectedItem = null;
 		}
@@ -99,13 +108,13 @@ namespace VASSALChatter
 		void ListView_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
 		{
 			Debug.WriteLine("ListView_Focused");
-			MessageEntry.Unfocus();
+			//MessageEntry.Unfocus();
 		}
 
 		void Grid_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
 		{
 			Debug.WriteLine("ListView_Focused");
-			MessageEntry.Unfocus();
+			//MessageEntry.Unfocus();
 		}
 	}
 }
